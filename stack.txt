@@ -1,0 +1,35 @@
+document = ""
+undo_stack = []
+redo_stack = []
+
+def make_change():
+    global document, undo_stack, redo_stack
+    new_text = "Hello World"
+
+
+
+    undo_stack.append(document)
+    document += new_text
+    redo_stack.clear()
+
+def undo():
+    global document, undo_stack, redo_stack
+    redo_stack.append(document)
+    document = undo_stack.pop()
+
+def redo():
+    global document, undo_stack, redo_stack
+    undo_stack.append(document)
+    document = redo_stack.pop()
+
+def display():
+    print(document)
+
+make_change()
+display()
+
+undo()
+display()
+
+redo()
+display()
